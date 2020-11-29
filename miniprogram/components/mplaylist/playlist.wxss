@@ -1,0 +1,33 @@
+/* components/playlist/playlist.wxss */
+.play-container {
+  width: 220rpx;
+  position: relative;
+  padding-bottom: 20rpx;
+}
+.playlist-img {
+  width: 100%;
+  height: 220rpx;
+  border-radius: 6rpx;
+}
+
+.playlist-name {
+  font-size: 26rpx;
+  line-height: 1.2;
+  padding: 2px 0 0 6px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-count {
+  font-size: 24rpx;
+  color:#fff;
+  text-shadow: 1px 0 0 rgba(0, 0, 0, 0);
+  position: absolute;
+  right:10rpx;
+  top: 4rpx;
+  padding-left: 26rpx;
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOUlEQVQ4T82SMUuDQQyG81JwcBGcmkRxFFQQ3Jyq/0CEri7qZldXFURwdHB30kHoH3DQjoKjgj+gXwIOgqCOjVz1PmqptOLiTXf3vnmSXA70x4X+eHffIKLdiJjv1QA8RMSRiJx/u+89uPttRMwAaDDzZZ9Wj4iTiGiq6k7WygrMrCki68M6Kopik4imVXU/ebsAMzsEwMycxKHLzF4jYltVLzLgiogaIvI4NPoz4VpEHKvqbAY8i8jkKMHZY2YhIsiAFxGZ+CXgXUTGuwB3v2fmhVEBRVGkB9xS1alcwTURrXwBbkRkdRDMzLo+AGdEtMTMiyUgB7n7HjMf/ATIvgRL+38EiIgWgDkiqqfx/NDCE4DTTqcDALWyBXevlX8buKtWq2+DAO12e7lSqYxljZlbAzONOs7k+wAf2qoRHT8O1AAAAABJRU5ErkJggg==)
+}
