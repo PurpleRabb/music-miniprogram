@@ -11,12 +11,34 @@ const db = cloud.database();
 const MYID = "301E40C13D675B8C";
 const URL = `https://apis.imooc.com/personalized?icode=${MYID}`
 const playListColletion = db.collection('playlist');
-
+const MAX_LIMIT = 30
 // 云函数入口函数
 exports.main = async (event, context) => {
   //const _res = await axios.get(URL);
   //const playlist = _res.data.result;
-  const curList = await playListColletion.get();
+  //const curList = await playListColletion.get(); //最多获取100条数据
+  //分批读取
+  const resLength = await playListColletion.count();
+  const total = resLength.total;
+  const batchTime = Math.ceil(total/MAX_LIMIT) //向上取整
+  const task = []
+  for (let i = 0; i<batchTime; i++) {
+    var _promise = playListColletion.skip(i*MAX_LIMIT).limit(MAX_LIMIT).get();
+    console.log(`准备第${i}次取`)
+    task.push(_promise);
+  }
+
+  let curList = {
+    data:[]
+  }
+  if (task.length > 0) {
+    curList = (await Promise.all(task)).reduce((acc,cur) => {
+      return  { 
+        data: acc.data.concat(cur.data)
+      }
+    })
+  }
+
   const { data } = await axios.get(URL); // 相当于_res.data
 
   if (data.code >= 1000) {
