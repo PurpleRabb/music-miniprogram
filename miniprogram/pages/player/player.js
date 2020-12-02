@@ -1,35 +1,20 @@
-// pages/music/musiclist.js
+// pages/player/player.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    musiclist: [],
-    listInfo : {}
+    playerId : ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log(this.options);
-    wx.cloud.callFunction({
-      name:"music",
-      data:{
-        playlistId : options.playlistId,
-        $url: "getmusiclist"
-      }
-    }).then((res)=> {
-      let pl = res.result.playlist;
-      console.log(pl.tracks);
-      this.setData({
-        musiclist: pl.tracks,
-        listInfo: {
-          coverImgUrl: pl.coverImgUrl,
-          name: pl.name
-        }
-      })
+    console.log(options.playerId);
+    this.setData({
+      playerId: options.playerId
     })
   },
 
@@ -58,7 +43,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
