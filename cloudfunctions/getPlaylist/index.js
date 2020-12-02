@@ -42,7 +42,7 @@ exports.main = async (event, context) => {
   const { data } = await axios.get(URL); // 相当于_res.data
 
   if (data.code >= 1000) {
-    console.log(data.msg);
+    //console.log(data.msg);
     return 0;
   }
   const playlist = data.result;

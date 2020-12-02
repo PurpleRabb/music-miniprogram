@@ -2,10 +2,13 @@
 const cloud = require('wx-server-sdk')
 const tcbRouter = require('tcb-router');
 const TcbRouter = require('tcb-router');
+const axios = require("axios");
 
 cloud.init()
 const db = cloud.database();
 
+ const BASE_URL = 'https://apis.imooc.com';
+ const MYID = "icode=301E40C13D675B8C";
 // 云函数入口函数
 exports.main = async (event, context) => {
   const app = new TcbRouter({event});
@@ -15,6 +18,11 @@ exports.main = async (event, context) => {
                     return res;
                 })
   });
+
+  app.router('getmusiclist',async(ctx,next) => {
+    const res = await axios.get(`${BASE_URL}/playlist/detail?id=${parseInt(event.playlistId)}&${MYID}`);
+    ctx.body = res.data;
+  })
 
   return app.serve();
 }
