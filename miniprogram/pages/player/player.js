@@ -5,17 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    playerId : ""
+    picUrl : ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.playerId);
+    //console.log(options);
+    let musiclist = wx.getStorageSync('musiclist');
+    let musicDetails = musiclist[options.index];
+    wx.setNavigationBarTitle({
+      title: musicDetails.name,
+    });
     this.setData({
-      playerId: options.playerId
+      picUrl: musicDetails.al.picUrl
     })
+    console.log(this.data.picUrl);
   },
 
   /**

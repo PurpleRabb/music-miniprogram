@@ -22,15 +22,20 @@ Page({
       }
     }).then((res)=> {
       let pl = res.result.playlist;
-      console.log(pl.tracks);
       this.setData({
         musiclist: pl.tracks,
         listInfo: {
           coverImgUrl: pl.coverImgUrl,
           name: pl.name
         }
-      })
+      });
+      console.log(this.data.musiclist);
+      this._setMusicList();
     })
+  },
+
+  _setMusicList() {
+    wx.setStorageSync('musiclist', this.data.musiclist);
   },
 
   /**
