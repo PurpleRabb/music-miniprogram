@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2244787_5dhj3jzhqk5.eot?t=1606962523158'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2244787_5dhj3jzhqk5.eot?t=1606962523158#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPQAAsAAAAACGgAAAOBAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDKgqECIM4ATYCJAMUCwwABCAFhG0HUBtEB8ieGjtToMlobnHUAM0w4BTiAX7df+fO3JnHD26C1JzBajeIceuGshlipevfP6e/x1g7krHlHmpKjrR9SXd6acpe6v/tEJbzeBwOC0KB0Aze3KVEF78rcr9FcWRpAiN8wAlVqrb/czltis9vZ7ncNdagMRf1AowDCmisTVGiBRYl6A1jV17EfgLKOuiXM2FpYxuKRcawgLDc4hSKUzZRZPiiLC+ZG4WjQBWTfbl3ccT/fPhiSCiSyFLG2MkLFw2YeV/7YTG++t9qdnHAGc8ItogU/YBIWFpqni8v9PWTp6zslm8UUFSU8L72/cgP5/9D0gjuXli1f3llJFJRIOSMxCoYA/2R97U2QsL7EQgp70ciRD4s5t7HXhkooxaHAbdhebcx0xNRrFbbpY4mrTdfu+HrbS3fNfpDp97f6nmrX3TyWSOeTrBxW3lupnX/SWhrunKmad51pd2ZbbPxjlOWX15WmqqPpxqKviQ7fYo0/tI8P7W1ZUG6ciAbsm2Z2VmsgScz69jfG0dJtko5TYuy21oXZuZgbIwymN4pnfERi4V4w0Rd4XUqLsQoSq/uOOXx58/ITRRiDj+e0C5HXtdzU/eS95KZtmL2prwzPHhhffeR6qddrAf5O/k5O2YvjBXOdscalUx6bbmfDSvOP2/Ptp5xOhjFpW2VsNLWtqCMlg4rrD9DYTtVVPa9PKL83ZaJEDU1ZtqkptxJ9bugUMPSNoIK5PZay4AjgP/S5+lMAJKHZgmkl5Lz/i8gAu/ffmxW1cS/ohHBm+/XBGz/Rf3Z/4rTmvNTOS1rosozNFmUK222bMkMSQyToKyMnxmi0c841hYQG4Mi50BIFLSHVFE3fCT3g0zFMMgVjYayvpYXVzSR8oRYQh/3AIJ6b5CodQFS9T7xkfwNmVZ/kKsPKZTNDHVrVvQIS0rnJVKFBtGOiaULn1k6VRokbyKPXCqTPJ+yizK0nGRkwKBscBl9lGNMCA/4qFKMMCk8sgQOQ9cVJJDCRl0NmkoFY0MDF5Y9aVAXHpQaT0KUggyE5hhh0Qk+5jZWSnPv34S4iIuSNVUV5l1IClmtEyMGDbfAL4v9VlXX8kjoADdKURiCkQQPsQSMyDV9AhGU97IhnTLI7OEJjBlC9Vhb8eD8Uu8ZN0GZcW4WkpCGGLKQi6tdelwQ0CjEstCkPj+2vDgRlRxZNFQBAAAAAA==') format('woff2'),
+  url('//at.alicdn.com/t/font_2244787_5dhj3jzhqk5.woff?t=1606962523158') format('woff'),
+  url('//at.alicdn.com/t/font_2244787_5dhj3jzhqk5.ttf?t=1606962523158') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2244787_5dhj3jzhqk5.svg?t=1606962523158#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-play:before {
+  content: "\e768";
+}
+
+.icon-pause:before {
+  content: "\e60e";
+}
+
+.icon-shangyishou:before {
+  content: "\e636";
+}
+
+.icon-xiayishou:before {
+  content: "\e637";
+}
+

@@ -5,3 +5,10 @@
     <image class="player-img" src="{{picUrl}}"></image>
   </view>
 </view>
+
+<view class="control">
+  <text class="iconfont icon-shangyishou"></text>
+  <text class="iconfont icon-play"></text>
+  <text class="iconfont icon-xiayishou"></text>
+  <text></text>
+</view>
