@@ -1,11 +1,15 @@
 // pages/player/player.js
+
+var musicDetails;
+const backgroundAudioManager = wx.getBackgroundAudioManager();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    picUrl : ""
+    picUrl : "",
+    isPlaying : false
   },
 
   /**
@@ -14,16 +18,41 @@ Page({
   onLoad: function (options) {
     //console.log(options);
     let musiclist = wx.getStorageSync('musiclist');
-    let musicDetails = musiclist[options.index];
+    musicDetails = musiclist[options.index];
     wx.setNavigationBarTitle({
       title: musicDetails.name,
     });
     this.setData({
-      picUrl: musicDetails.al.picUrl
+      picUrl: musicDetails.al.picUrl,
+      isPlaying : false
     })
-    console.log(this.data.picUrl);
+    this._getMusicDetail(options.playerId);
+    //console.log(this.data.picUrl);
   },
-
+  _getMusicDetail(playerId) {
+    wx.showLoading({
+      title: '歌曲加载中',
+    })
+    console.log(playerId);
+    wx.cloud.callFunction({
+      name:'music',
+      data : {
+        $url: "getmusicUrl",
+        musicId : playerId
+      }
+    }).then((res) => {
+      backgroundAudioManager.src = res.result.data[0].url;
+      backgroundAudioManager.title = musicDetails.name;
+      backgroundAudioManager.coverImgUrl = musicDetails.al.picUrl;
+      backgroundAudioManager.singer = musicDetails.ar[0].name;
+      backgroundAudioManager.epname = musicDetails.al.name;
+      this.setData ({
+        isPlaying : true
+      });
+      wx.hideLoading();
+      console.log(res.result);
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

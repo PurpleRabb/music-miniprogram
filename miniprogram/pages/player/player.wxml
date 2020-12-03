@@ -8,7 +8,7 @@
 
 <view class="control">
   <text class="iconfont icon-shangyishou"></text>
-  <text class="iconfont icon-play"></text>
+  <text class="iconfont {{isPlaying?'icon-pause':'icon-play'}}"></text>
   <text class="iconfont icon-xiayishou"></text>
   <text></text>
 </view>

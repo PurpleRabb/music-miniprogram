@@ -77,7 +77,7 @@
   font-size: 80rpx;
 }
 
-.icon-play {
+.icon-play, .icon-pause{
   font-size: 120rpx;
   margin: 0 50rpx;
 }

@@ -22,7 +22,12 @@ exports.main = async (event, context) => {
   app.router('getmusiclist',async(ctx,next) => {
     const res = await axios.get(`${BASE_URL}/playlist/detail?id=${parseInt(event.playlistId)}&${MYID}`);
     ctx.body = res.data;
-  })
+  });
+
+  app.router('getmusicUrl',async(ctx,next) => {
+    const res = await axios.get(`${BASE_URL}/song/url?id=${event.musicId}&${MYID}`);
+    ctx.body = res.data;
+  });
 
   return app.serve();
 }
