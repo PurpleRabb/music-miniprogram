@@ -6,6 +6,10 @@
   </view>
 </view>
 
+<view class="progress-bar">
+  <x-progressbar></x-progressbar>
+</view>
+
 <view class="control">
   <text class="iconfont icon-shangyishou"></text>
   <text class="iconfont {{isPlaying?'icon-pause':'icon-play'}}"></text>

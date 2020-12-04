@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "x-progressbar" : "/components/progressbar/progressbar"
+  }
 }
