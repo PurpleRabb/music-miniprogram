@@ -3,6 +3,7 @@ let movableAreaWidth = 0;
 let movableViewWidth = 0;
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 let duration = 0;
+let currentSecs = 0;
 Component({
   /**
    * 组件的属性列表
@@ -80,6 +81,18 @@ Component({
       })
       backgroundAudioManager.onTimeUpdate(() => {
         console.log("onTimeUpdate");
+        let currentTime = backgroundAudioManager.currentTime;
+        let duration = backgroundAudioManager.duration;
+        if(currentTime.toString().split('.')[0] != currentSecs) { //避免频繁更新
+          let _time = this._formatTime(currentTime);
+          this.setData({
+            movableDis: (movableAreaWidth-movableViewWidth) * currentTime / duration,
+            progress: (currentTime/duration) * 100,
+            ['showTime.currentTime'] : _time.min+':'+_time.sec
+          });
+          currentSecs = currentTime.toString().split('.')[0];
+        }
+        
       })
       backgroundAudioManager.onEnded(() => {
         console.log("onEnded");
@@ -93,12 +106,22 @@ Component({
       })
     },
     _setDuraion(secs) {
-      let min = Math.floor(secs / 60);
-      let sec = Math.floor(secs % 60);
-      console.log(secs);
+      // let min = Math.floor(secs / 60);
+      // let sec = Math.floor(secs % 60);
+      // console.log(secs);
+      let _time = this._formatTime(secs)
       this.setData({
-        ['showTime.totalTime'] : this._padding0(min)+':'+this._padding0(sec)
+        ['showTime.totalTime'] : _time.min+':'+_time.sec
       })
+    },
+
+    _formatTime(secs) {
+      let min = this._padding0(Math.floor(secs / 60));
+      let sec = this._padding0(Math.floor(secs % 60));
+      return {
+        'min' : min,
+        'sec' : sec
+      };
     },
 
     _padding0(value) {

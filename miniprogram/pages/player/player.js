@@ -78,7 +78,7 @@ Page({
       nowPlayingIndex = musiclist.length - 1;
     }
     this._getMusicDetail(musiclist[nowPlayingIndex].id);
-    console.log("onPrev:" + musiclist[nowPlayingIndex].id);
+   // console.log("onPrev:" + musiclist[nowPlayingIndex].id);
   },
 
   onNext() {
@@ -87,7 +87,7 @@ Page({
       nowPlayingIndex = 0;
     }
     this._getMusicDetail(musiclist[nowPlayingIndex].id);
-    console.log("onNext:" + musiclist[nowPlayingIndex].id);
+   // console.log("onNext:" + musiclist[nowPlayingIndex].id);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
