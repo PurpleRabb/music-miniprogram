@@ -21,6 +21,7 @@ Page({
     //console.log(options);
     musiclist = wx.getStorageSync('musiclist');
     musicDetails = musiclist[options.index];
+    nowPlayingIndex = options.index;
     wx.setNavigationBarTitle({
       title: musicDetails.name,
     });
