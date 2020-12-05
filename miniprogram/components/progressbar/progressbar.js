@@ -51,6 +51,8 @@ Component({
         console.log("onPlay");
       })
       backgroundAudioManager.onPlay(() => {
+        duration = backgroundAudioManager.duration;
+        this._setDuraion(duration);
         console.log("onPlay");
       })
       backgroundAudioManager.onStop(() => {
@@ -64,14 +66,17 @@ Component({
       })
       backgroundAudioManager.onCanplay(() => {
         console.log("onCanplay");
-        duration = backgroundAudioManager.duration
-        if (typeof duration == 'undefined') { //有时会返回undefined，开个定时器再取一次
-          setTimeout(() => {
-            this._setDuraion(duration);
-          },1500);
-        } else {
-          this._setDuraion(duration);
-        }
+        duration = backgroundAudioManager.duration;
+        // if (duration === undefined) { //有时会返回undefined，开个定时器再取一次
+        //   setTimeout(() => {
+        //     this._setDuraion(duration);
+        //     console.log("timeout:"+duration);
+        //   },1000);
+        // } else {
+        //   console.log(duration);
+        //   console.log("first time:"+duration);
+        //   this._setDuraion(duration);
+        // }
       })
       backgroundAudioManager.onTimeUpdate(() => {
         console.log("onTimeUpdate");

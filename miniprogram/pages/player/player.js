@@ -1,6 +1,8 @@
 // pages/player/player.js
 
 var musicDetails;
+let nowPlayingIndex = 0;
+let musiclist = [];
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 Page({
 
@@ -17,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     //console.log(options);
-    let musiclist = wx.getStorageSync('musiclist');
+    musiclist = wx.getStorageSync('musiclist');
     musicDetails = musiclist[options.index];
     wx.setNavigationBarTitle({
       title: musicDetails.name,
@@ -28,12 +30,16 @@ Page({
     })
     this._getMusicDetail(options.playerId);
     //console.log(this.data.picUrl);
+    console.log(musiclist);
   },
   _getMusicDetail(playerId) {
+    let music = musiclist[nowPlayingIndex];
+    console.log(music);
+    backgroundAudioManager.stop();
     wx.showLoading({
       title: '歌曲加载中',
     })
-    console.log(playerId);
+    //console.log(playerId);
     wx.cloud.callFunction({
       name:'music',
       data : {
@@ -42,16 +48,46 @@ Page({
       }
     }).then((res) => {
       backgroundAudioManager.src = res.result.data[0].url;
-      backgroundAudioManager.title = musicDetails.name;
-      backgroundAudioManager.coverImgUrl = musicDetails.al.picUrl;
-      backgroundAudioManager.singer = musicDetails.ar[0].name;
-      backgroundAudioManager.epname = musicDetails.al.name;
+      backgroundAudioManager.title = music.name;
+      backgroundAudioManager.coverImgUrl = music.al.picUrl;
+      backgroundAudioManager.singer = music.ar[0].name;
+      backgroundAudioManager.epname = music.al.name;
       this.setData ({
-        isPlaying : true
+        isPlaying : true,
+        picUrl: music.al.picUrl
       });
       wx.hideLoading();
       console.log(res.result);
     })
+  },
+
+  switchState() {
+    if (this.data.isPlaying) {
+      backgroundAudioManager.pause();
+    } else {
+      backgroundAudioManager.play();
+    }
+    this.setData ({
+      isPlaying : !this.data.isPlaying
+    })
+  },
+
+  onPrev() {
+    nowPlayingIndex--;
+    if (nowPlayingIndex < 0) {
+      nowPlayingIndex = musiclist.length - 1;
+    }
+    this._getMusicDetail(musiclist[nowPlayingIndex].id);
+    console.log("onPrev:" + musiclist[nowPlayingIndex].id);
+  },
+
+  onNext() {
+    nowPlayingIndex++;
+    if (nowPlayingIndex == musiclist.length) {
+      nowPlayingIndex = 0;
+    }
+    this._getMusicDetail(musiclist[nowPlayingIndex].id);
+    console.log("onNext:" + musiclist[nowPlayingIndex].id);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
