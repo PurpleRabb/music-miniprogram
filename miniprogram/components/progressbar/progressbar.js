@@ -100,7 +100,7 @@ Component({
       })
       backgroundAudioManager.onTimeUpdate(() => {
         if(!isMoving) {
-          console.log("onTimeUpdate");
+          //console.log("onTimeUpdate");
           let currentTime = backgroundAudioManager.currentTime;
           let duration = backgroundAudioManager.duration;
           if(currentTime.toString().split('.')[0] != currentSecs) { //避免频繁更新

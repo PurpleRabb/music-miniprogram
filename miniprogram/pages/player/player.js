@@ -11,7 +11,9 @@ Page({
    */
   data: {
     picUrl : "",
-    isPlaying : false
+    isPlaying : false,
+    isShowLyric : false,
+    lyric: ""
   },
 
   /**
@@ -58,7 +60,30 @@ Page({
         picUrl: music.al.picUrl
       });
       wx.hideLoading();
-      console.log(res.result);
+      //console.log(res.result);
+      wx.cloud.callFunction({
+        name:"music",
+        data: {
+          musicId: playerId,
+          $url: "getLyric"
+        }
+      }).then((res) => {
+        console.log(res);
+        let lyric = "暂无歌词";
+        if (res.result != null) {
+          lyric = res.result.lrc.lyric
+        }
+        this.setData({
+          lyric: lyric
+        });
+      })
+    })
+  },
+
+  showLyric() {
+    console.log(this.data.isShowLyric);
+    this.setData({
+      isShowLyric : !this.data.isShowLyric
     })
   },
 

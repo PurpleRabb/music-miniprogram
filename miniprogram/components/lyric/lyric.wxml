@@ -1,0 +1,5 @@
+<!--components/lyric/lyric.wxml-->
+
+<scroll-view hidden="{{isShowLyric}}">
+  <text>{{lyric}}</text>
+</scroll-view>
