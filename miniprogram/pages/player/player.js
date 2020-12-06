@@ -70,7 +70,7 @@ Page({
       }).then((res) => {
         console.log(res);
         let lyric = "暂无歌词";
-        if (res.result != null) {
+        if (res.result != null || res.result.lrc !=null || res.result.lrc.lyric != null) {
           lyric = res.result.lrc.lyric
         }
         this.setData({
