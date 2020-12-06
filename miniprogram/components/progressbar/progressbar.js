@@ -111,6 +111,9 @@ Component({
               ['showTime.currentTime'] : _time.min+':'+_time.sec
             });
             currentSecs = currentTime.toString().split('.')[0];
+            this.triggerEvent('timeUpdate',{
+              currentTime
+            });
           }
         }
       })
