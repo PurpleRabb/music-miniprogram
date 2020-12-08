@@ -5,7 +5,9 @@
     <i class="iconfont icon-fabu" bind:tap="onPublish"></i>
     </view>
     <view class="search-container">
+      <!--传入外部样式给search组件-->
       <x-search placeHoder="请输入关键字" iconfont="iconfont" icon-sousuo="icon-sousuo"></x-search>
     </view>
   </view>
+  <x-bottom-modal modalShow="{{modalShow}}"></x-bottom-modal>
 </view>
