@@ -9,5 +9,5 @@
       <x-search placeHoder="请输入关键字" iconfont="iconfont" icon-sousuo="icon-sousuo"></x-search>
     </view>
   </view>
-  <x-bottom-modal modalShow="{{modalShow}}"></x-bottom-modal>
+  <x-login modalShow="{{modalShow}}"></x-login>
 </view>
