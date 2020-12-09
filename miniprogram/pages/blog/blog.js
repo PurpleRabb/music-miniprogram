@@ -11,11 +11,14 @@ Page({
   onPublish() {
     wx.getSetting({
       success: (res)=> {
-        console.log(res.authSetting)
+        //console.log(res.authSetting)
         if(res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
-            success(res) {
-              console.log(res);
+            success: (res)=> {
+              //console.log(res);
+              this.onLoginSuccess({
+                detail: res.userInfo
+              })
             }
           })
         }
@@ -82,5 +85,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onLoginSuccess(event) {
+    console.log(event);
+    const detail = event.detail
+    wx.navigateTo({
+      url: `../blog-edit/blog-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
+    })
+  },
+
+  onLoginFail() {
+    wx.showModal({
+      title: "授权用户才能发表"
+    })
   }
 })

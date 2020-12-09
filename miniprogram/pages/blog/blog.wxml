@@ -9,5 +9,5 @@
       <x-search placeHoder="请输入关键字" iconfont="iconfont" icon-sousuo="icon-sousuo"></x-search>
     </view>
   </view>
-  <x-login modalShow="{{modalShow}}"></x-login>
+  <x-login modalShow="{{modalShow}}" bind:loginSuccess="onLoginSuccess" bind:loginFail="onLoginFail"></x-login>
 </view>

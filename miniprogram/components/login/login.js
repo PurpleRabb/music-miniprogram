@@ -18,6 +18,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onGetUserInfo(event) {
+      console.log(event);
+      const userinfo = event.detail.userInfo;
+      if (userinfo) {
+        //授权成功
+        this.setData({
+          modalShow : false
+        });
+        this.triggerEvent("loginSuccess",userinfo);
+      } else {
+        //拒绝授权
+        this.triggerEvent("loginFail");
+      }
+    }
   }
 })

@@ -1,6 +1,10 @@
 <!--components/login/login.wxml-->
 <x-bottom-modal modalShow="{{modalShow}}">
   <view slot="modal-content">
-    <button>获取微信授权信息</button>
+  <view>
+    <button class="loginBtn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">授权</button>
+    <button class="cancelBtn">取消</button>
   </view>
+   
+  </view>class
 </x-bottom-modal>
