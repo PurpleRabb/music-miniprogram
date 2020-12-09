@@ -1,11 +1,33 @@
 // pages/blog-edit/blog-edit.js
+const MAX_WORDS = 140;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    wordNum: 0,
+  },
 
+  textInput(event) {
+    console.log(event)
+    this.setData({
+      wordNum: event.detail.value.length,
+      footerBottom: 0
+    })
+  },
+
+  onFocus(event) {
+    this.setData({
+      footerBottom: event.detail.height
+    })
+  },
+
+  onBlur() {
+    this.setData({
+      footerBottom: 0
+    })
   },
 
   /**

@@ -1,2 +1,14 @@
-<!--pages/blog-edit/blog-edit.wxml-->
-<text>pages/blog-edit/blog-edit.wxml</text>
+<view class="container">
+<textarea class="content" placeholder="请输入文字..."
+  bindinput="textInput" bindfocus="onFocus" bindblur="onBlur"   auto-focus maxlength="140"></textarea>
+
+  <view class="image-list">
+    <view class="image-wrap selectphoto">
+      <i class="iconfont icon-jiahao"></i>
+    </view>
+  </view>
+</view>
+<view class="blog-footer" style="bottom:{{footerBottom}}px">
+  <text class="words-num">{{wordNum}}</text>
+  <button class="publishBtn">发布</button>
+</view>
