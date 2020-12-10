@@ -18,5 +18,5 @@
 </view>
 <view class="blog-footer" style="bottom:{{footerBottom}}px">
   <text class="words-num">{{wordNum}}</text>
-  <button class="publishBtn">发布</button>
+  <button class="publishBtn" bind:tap="send">发布</button>
 </view>

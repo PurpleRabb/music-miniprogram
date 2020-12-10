@@ -73,6 +73,25 @@ Page({
     })
   },
 
+  send() {
+    //上传到云存储
+    for (let i=0;i<this.data.selectedImages.length;i++) {
+      let item = this.data.selectedImages[i];
+      let suffix = /\.\w+$/.exec(item); //获取扩展名
+      console.log(suffix);
+      wx.cloud.uploadFile({
+        cloudPath: "blog/" + Date.now + '-' + Math.random() * 1000000 + suffix,
+        filePath: item,
+        success: (res) => {
+
+        },
+        fail: (res) => {
+          console.log(res);
+        }
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
