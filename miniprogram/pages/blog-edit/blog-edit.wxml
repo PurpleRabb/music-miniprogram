@@ -3,8 +3,16 @@
   bindinput="textInput" bindfocus="onFocus" bindblur="onBlur"   auto-focus maxlength="140"></textarea>
 
   <view class="image-list">
-    <view class="image-wrap selectphoto">
-      <i class="iconfont icon-jiahao"></i>
+    <block wx:for="{{selectedImages}}" wx:key="*this">
+      <view class="image-wrap">
+        <image class="image" src="{{item}}" mode="aspectFill" bind:tap="onPreview" data-imagesrc="{{item}}">
+        </image>
+        <i class="iconfont icon-shanchu" bind:tap="removeImage" data-index="{{index}}"></i>
+      </view>
+    </block>
+
+    <view class="image-wrap selectphoto" bind:tap="onSelectImage" hidden="{{!showSelect}}">
+        <i class="iconfont icon-jiahao"></i>
     </view>
   </view>
 </view>

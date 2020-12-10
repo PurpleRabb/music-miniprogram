@@ -1,5 +1,6 @@
 // pages/blog-edit/blog-edit.js
 const MAX_WORDS = 140;
+const MAX_IMGS = 9;
 
 Page({
 
@@ -8,6 +9,8 @@ Page({
    */
   data: {
     wordNum: 0,
+    selectedImages: [],
+    showSelect: true
   },
 
   textInput(event) {
@@ -27,6 +30,46 @@ Page({
   onBlur() {
     this.setData({
       footerBottom: 0
+    })
+  },
+
+  onSelectImage() {
+    let max = MAX_IMGS - this.data.selectedImages.length;
+    wx.chooseImage({
+      count: max,
+      sizeType: ["original","compressed"],
+      sourceType: ['album','camera'],
+      success: (res) => {
+        console.log(res);
+        this.setData({
+          selectedImages: this.data.selectedImages.concat(res.tempFilePaths)
+        })
+        max = MAX_IMGS - this.data.selectedImages.length;
+        this.setData({
+          showSelect: max <= 0? false: true
+        })
+      }
+    })
+  },
+
+  removeImage(event) {
+    console.log(event.target.dataset.index);
+    this.data.selectedImages.splice(event.target.dataset.index,1)
+    this.setData({
+      selectedImages: this.data.selectedImages
+    })
+
+    if (this.data.selectedImages.length == MAX_IMGS-1) {
+      this.setData({
+        showSelect: true
+      })
+    }
+  },
+
+  onPreview(event) {
+    wx.previewImage({
+      urls: this.data.selectedImages,
+      current: event.target.dataset.imagesrc
     })
   },
 
