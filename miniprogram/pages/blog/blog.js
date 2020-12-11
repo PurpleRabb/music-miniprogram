@@ -37,6 +37,10 @@ Page({
    */
 
   onLoad: function (options) {
+    this._onLoadBlogList();
+  },
+
+  _onLoadBlogList() {
     wx.cloud.callFunction({
       name:"blog",
       data: {
@@ -56,14 +60,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //console.log("show")
   },
 
   /**
