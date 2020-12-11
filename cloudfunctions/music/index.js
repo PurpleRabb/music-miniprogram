@@ -1,6 +1,5 @@
 // 云函数入口文件
-const cloud = require('wx-server-sdk')
-const tcbRouter = require('tcb-router');
+const cloud = require('wx-server-sdk');
 const TcbRouter = require('tcb-router');
 const axios = require("axios");
 

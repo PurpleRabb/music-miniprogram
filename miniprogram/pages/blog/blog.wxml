@@ -2,12 +2,20 @@
 <view class="container">
   <view class="header">
     <view class="publish-container">
-    <i class="iconfont icon-fabu" bind:tap="onPublish"></i>
+      <i class="iconfont icon-fabu" bind:tap="onPublish"></i>
     </view>
     <view class="search-container">
       <!--传入外部样式给search组件-->
       <x-search placeHoder="请输入关键字" iconfont="iconfont" icon-sousuo="icon-sousuo"></x-search>
     </view>
+  </view>
+  <!-- 博客卡片列表 -->
+  <view class="blog-list">
+    <block wx:for="{{bloglist}}" wx:key="_id">
+      <view class="blog-panel">
+        <x-blogcard blog="{{item}}" data-blogid="{{item._id}}" bind:tap="goComment" />
+      </view>
+    </block>
   </view>
   <x-login modalShow="{{modalShow}}" bind:loginSuccess="onLoginSuccess" bind:loginFail="onLoginFail"></x-login>
 </view>
