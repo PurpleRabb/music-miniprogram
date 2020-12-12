@@ -87,6 +87,7 @@ Page({
     }
     wx.showLoading({
       title: '发布中...',
+      mask: true
     })
     for (let i = 0; i < this.data.selectedImages.length; i++) {
       let _promise = new Promise((resole, reject) => {
@@ -126,6 +127,9 @@ Page({
           },
         });
         wx.navigateBack();
+        let pages = getCurrentPages()
+        let prePage = pages[pages.length-2] //获取父页面
+        prePage.refresh() //通知父页面更新
       });
     }).catch((exception) => {
       console.log(exception);

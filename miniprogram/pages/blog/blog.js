@@ -1,4 +1,5 @@
 // pages/blog/blog.js
+let keyword = ""
 Page({
 
   /**
@@ -40,20 +41,34 @@ Page({
     this._onLoadBlogList();
   },
 
-  _onLoadBlogList() {
+  refresh() {
+    this.setData({
+      bloglist:[]
+    })
+    this._onLoadBlogList();
+  },
+
+  _onLoadBlogList(start = 0) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.cloud.callFunction({
       name:"blog",
       data: {
-        start: 0,
+        start,
+        keyword,
         count: 10,
         $url: "getBlog"
       }
     }).then((res)=>{
-      console.log(res.result)
+      //console.log(res.result)
       this.setData({
         bloglist: this.data.bloglist.concat(res.result)
       })
+      wx.hideLoading()
+      wx.stopPullDownRefresh()
     })
+    
   },
 
   /**
@@ -88,14 +103,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.refresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log("onReachBottom")
+    this._onLoadBlogList(this.data.bloglist.length)
   },
 
   /**
@@ -117,5 +133,20 @@ Page({
     wx.showModal({
       title: "授权用户才能发表"
     })
+  },
+
+  goComment(event) {
+    wx.navigateTo({
+      url: '../../pages/blog-comment/blog-comment?blogId='+event.target.dataset.blogid,
+    })
+  },
+
+  onSearch(event) {
+    //console.log(event.detail.keyword)
+    this.setData({
+      bloglist: []
+    })
+    keyword = event.detail.keyword
+    this._onLoadBlogList(0)
   }
 })
