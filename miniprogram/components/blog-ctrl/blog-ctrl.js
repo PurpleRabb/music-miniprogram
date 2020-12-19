@@ -91,6 +91,8 @@ Component({
           modalShow: false,
           content:''
         })
+        //刷新评论列表
+        this.triggerEvent('refreshCommentList')
       })
     },
 

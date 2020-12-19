@@ -8,7 +8,8 @@ Page({
    */
   data: {
     blog: {},
-    commentList: []
+    commentList: [],
+    blogId: ""
   },
 
   /**
@@ -16,10 +17,13 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    this.setData({
+      blogId: options.blogId
+    })
     this._getBlogDetail(options.blogId)
   },
 
-  _getBlogDetail(blogId) {
+  _getBlogDetail() {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -27,7 +31,7 @@ Page({
     wx.cloud.callFunction({
       name: 'blog',
       data: {
-        blogId,
+        blogId: this.data.blogId,
         $url: 'detail'
       }
     }).then((res) => {
