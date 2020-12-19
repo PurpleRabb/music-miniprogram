@@ -41,3 +41,22 @@
   right: 20rpx;
   bottom: 20rpx;
 }
+
+.share-btn {
+  background-color: #fff;
+  padding: 0;
+  height: 100%;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-btn::after {
+  display: none;
+}
+
+.share-hover::after{
+  border: 0;
+}
