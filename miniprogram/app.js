@@ -14,6 +14,12 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      openId : -1
+    }
+  },
+
+  getOpenId() {
+    
   }
 })
