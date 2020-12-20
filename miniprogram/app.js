@@ -12,14 +12,24 @@ App({
         // env: 'my-env-id',
         traceUser: true,
       })
+      this.getOpenId()
     }
 
     this.globalData = {
       openId : -1
     }
   },
-
-  getOpenId() {
-    
+  
+   getOpenId() {
+    wx.cloud.callFunction({
+      name: "login"
+    }).then((res)=> {
+      const openid = res.result.openid
+      this.globalData.openid = openid
+      if (wx.getStorageSync(openid) == '') {
+        wx.setStorageSync(openid, [])
+        console.log(openid)
+      }
+    })
   }
 })

@@ -4,6 +4,8 @@ var musicDetails;
 let nowPlayingIndex = 0;
 let musiclist = [];
 const backgroundAudioManager = wx.getBackgroundAudioManager();
+var app = getApp()
+
 Page({
 
   /**
@@ -55,6 +57,7 @@ Page({
       backgroundAudioManager.coverImgUrl = music.al.picUrl;
       backgroundAudioManager.singer = music.ar[0].name;
       backgroundAudioManager.epname = music.al.name;
+      this._savePlayHistory(music)
       this.setData ({
         isPlaying : true,
         picUrl: music.al.picUrl
@@ -119,6 +122,27 @@ Page({
   timeUpdate(event) {
     this.selectComponent(".lyric").update(event.detail.currentTime);
   },
+
+  _savePlayHistory() {
+    const openid = app.globalData.openid
+    const music = musiclist[nowPlayingIndex]
+    const history = wx.getStorageSync(openid)
+    let bHave = false //去重
+    for (let i=0; i < history.length; i++) {
+      if (history[i].id == music.id) {
+        bHave = true
+        break
+      }
+    }
+    if (!bHave) {
+      history.unshift(music)
+      wx.setStorage({
+        data: history,
+        key: openid,
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
