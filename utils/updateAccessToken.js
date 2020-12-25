@@ -35,7 +35,7 @@ const getAccessToken = async () => {
             await updateAccessToken()
             await getAccessToken()
         }
-        return resObj
+        return resObj.access_token
     } catch(err) {
         await updateAccessToken()
         await getAccessToken()
