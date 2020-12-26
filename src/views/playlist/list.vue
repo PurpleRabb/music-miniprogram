@@ -52,6 +52,9 @@ export default {
         this.loading = false
       });
     },
+    onEdit(row) {
+        this.$router.push(`/playlist/edit/${row._id}`)
+    },
   },
 };
 </script>
