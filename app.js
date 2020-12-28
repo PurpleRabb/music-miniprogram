@@ -7,9 +7,11 @@ const cors = require('koa2-cors')
 const ENV = 'testmusic-0g88uqm543c59cbe'
 
 const playlist = require('./controller/playlist')
+const swiper = require('./controller/swiper')
 
 
 router.use('/playlist', playlist.routes())
+router.use('/swiper',swiper.routes())
 
 app.use(koabody({
     multipart: true
