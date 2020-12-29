@@ -35,4 +35,21 @@ router.get('/list', async (ctx, next) => {
     }
 })
 
+router.post('/upload',async (ctx, next) => {
+    const fileid = await callCloudStorage.upload(ctx)
+    console.log(fileid)
+    const query = `
+        db.collection('swiper').add({
+            data: {
+                fileID: '${fileid}'
+            }
+        })
+    `
+   const res = await callCloudDB(ctx, 'databaseadd', query)
+   ctx.body = {
+       code: 20000,
+       id_list: res.data.id_list
+   }
+})
+
 module.exports = router
