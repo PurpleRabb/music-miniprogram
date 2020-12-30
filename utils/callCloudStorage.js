@@ -2,7 +2,8 @@ const token = require('../utils/updateAccessToken')
 const axios = require('axios')
 const fs = require('fs')
 const FormData = require('form-data');
-const rp = require('request-promise')
+const rp = require('request-promise');
+const { del } = require('../controller/swiper');
 
 
 const cloudStorage = {
@@ -75,6 +76,17 @@ const cloudStorage = {
             console.log(res)
         })
 
+    },
+
+    async del(ctx,filelist) {
+        const ACCESS_TOKEN = await token()
+        const url = `https://api.weixin.qq.com/tcb/batchdeletefile?access_token=${ACCESS_TOKEN}`
+        return await axios.post(url,{
+            env: ctx.state.env,
+            fileid_list: filelist
+        }).then((res) => {
+            return res.data
+        })
     }
 }
 

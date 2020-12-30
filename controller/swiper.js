@@ -52,4 +52,19 @@ router.post('/upload',async (ctx, next) => {
    }
 })
 
+router.get('/delete',async (ctx, next) => {
+    console.log(ctx.request.query._id)
+    const query = `db.collection('swiper').doc('${ctx.request.query._id}').remove()`
+    const res = await callCloudDB(ctx,'databasedelete',query)
+    console.log(res.data)
+    filelist = []
+    filelist.push(ctx.request.query.fileid)
+    const delRes = await callCloudStorage.del(ctx,filelist)
+    console.log(delRes)
+    ctx.body = {
+        code: 20000,
+        deleted: res.data.deleted
+    }
+})
+
 module.exports = router
