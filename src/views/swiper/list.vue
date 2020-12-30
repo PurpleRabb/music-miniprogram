@@ -23,16 +23,26 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 确认删除的对话框 -->
+    <el-dialog title="提示" :visible.sync="delDialogVisible" width="30%">
+      <span>确定删除该歌单吗</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="delDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doDel">确 定</el-button>
+      </span>
+    </el-dialog>
 </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/swiper'
+import { fetchList, del } from '@/api/swiper'
 export default {
   data() {
     return {
       swiperList: [],
-      loading: false
+      loading: false,
+      delDialogVisible: false,
+      delInfo: {}
     }
   },
 
@@ -58,6 +68,22 @@ export default {
         this.getList()
       }
     },
+    onDel(row) {
+      this.delDialogVisible = true
+      this.delInfo = row
+    },
+    doDel() {
+      del(this.delInfo).then((res) => {
+        this.delDialogVisible = false
+        if (res.deleted >= 1) {
+          this.getList()
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+        }
+      })
+    }
   }
 }
 </script>
